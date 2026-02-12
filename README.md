@@ -1,36 +1,59 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Gratitude
 
-## Getting Started
+A simple social website where users sign in with Google, set a username, search for friends to follow, and post short gratitude updates to their timeline. Friends can see and heart posts.
 
-First, run the development server:
+## Tech Stack
+
+- Next.js 14+ (App Router) + TypeScript
+- Supabase (Google OAuth, PostgreSQL, Row Level Security)
+- Tailwind CSS
+- Vercel (deployment)
+
+## Setup
+
+### 1. Install dependencies
+
+```bash
+npm install
+```
+
+### 2. Create a Supabase project
+
+1. Go to [supabase.com](https://supabase.com) and create a project
+2. Copy your project URL and anon key from Settings → API
+
+### 3. Configure Google OAuth
+
+1. In [Google Cloud Console](https://console.cloud.google.com), create OAuth 2.0 credentials (Web application)
+2. Add authorized redirect URI: `https://YOUR_PROJECT_REF.supabase.co/auth/v1/callback`
+3. In Supabase: Authentication → Providers → Google, enable and add Client ID + Secret
+
+### 4. Run database migrations
+
+In the Supabase SQL Editor, run the contents of `supabase/migrations/001_initial.sql`.
+
+### 5. Environment variables
+
+Copy `.env.local.example` to `.env.local` and fill in:
+
+```
+NEXT_PUBLIC_SUPABASE_URL=your_supabase_project_url
+NEXT_PUBLIC_SUPABASE_ANON_KEY=your_supabase_anon_key
+NEXT_PUBLIC_SITE_URL=http://localhost:3000
+```
+
+For production, set `NEXT_PUBLIC_SITE_URL` to your deployed URL (e.g. `https://your-app.vercel.app`) and add that URL to Supabase Authentication → URL Configuration → Redirect URLs.
+
+### 6. Run locally
 
 ```bash
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
-
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
-
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
-
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+Open [http://localhost:3000](http://localhost:3000).
 
 ## Deploy on Vercel
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+1. Push to GitHub and import the repo in Vercel
+2. Add the same environment variables in Vercel
+3. Add your Vercel URL to Supabase redirect URLs
