@@ -1,6 +1,6 @@
-# Gratitude
+# Ripple
 
-A simple social website where users sign in with Google, set a username, search for friends to follow, and post short gratitude updates to their timeline. Friends can see and heart posts.
+A social gratitude practice.
 
 ## Tech Stack
 
