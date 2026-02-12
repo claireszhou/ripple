@@ -17,11 +17,10 @@ export default async function HomePage() {
     <div className="flex min-h-screen flex-col items-center justify-center gap-8 p-6">
       <div className="flex max-w-md flex-col items-center gap-4 text-center">
         <h1 className="text-3xl font-bold tracking-tight">
-          Share what you&apos;re grateful for
+          Share what you're grateful for
         </h1>
         <p className="text-lg text-sky-900 dark:text-sky-100">
-          Sign in with Google, connect with friends, and drop short gratitude
-          updates to your timeline. Heart the drops that inspire you.
+          Drop notes of gratitude and let them ripple through your community.
         </p>
       </div>
       <form action={signInWithGoogle}>
